@@ -24,4 +24,15 @@ int main(void) {
       GPIO_PORTF_IEV_R &= ~0x11;  // Falling edge trigger
       GPIO_PORTF_ICR_R = 0x11;    // Clear prior interrupts
       GPIO_PORTF_IM_R |= 0x11;     // Unmask interrupts for PF4 and PF0
+NVIC_EN0_R |= 0x40000000; // Enable interrupt for Port F             // Initialize GPIO for switches and LED
 
+
+      // Initialize SysTick timer for PWM
+
+      NVIC_ST_RELOAD_R = 160 - 1; // Reload value for 100 kHz frequency
+        NVIC_ST_CTRL_R = 0x07;      // Enable SysTick with core clock and interrupts
+
+    while (1) {
+        // Main loop does nothing, PWM and duty cycle control is handled by interrupts
+    }
+}
