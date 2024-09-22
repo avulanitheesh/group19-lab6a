@@ -25,7 +25,13 @@ int main(void) {
       GPIO_PORTF_ICR_R = 0x11;    // Clear prior interrupts
       GPIO_PORTF_IM_R |= 0x11;     // Unmask interrupts for PF4 and PF0
 NVIC_EN0_R |= 0x40000000; // Enable interrupt for Port F             // Initialize GPIO for switches and LED
+static uint32_t onTime = 0;
 
+    if (onTime < (dutyCycle * count) / 100) {
+        GPIO_PORTF_DATA_R |= 0x02; // Turn on red LED
+    } else {
+        GPIO_PORTF_DATA_R &= ~0x02; // Turn off red LED
+    }
 
       // Initialize SysTick timer for PWM
 
