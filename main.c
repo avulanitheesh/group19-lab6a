@@ -36,3 +36,4 @@ NVIC_EN0_R |= 0x40000000; // Enable interrupt for Port F             // Initiali
         // Main loop does nothing, PWM and duty cycle control is handled by interrupts
     }
 }
+void Systick_Handler(void) {
