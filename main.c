@@ -56,3 +56,4 @@ static uint32_t onTime = 0;
         onTime = 0;  // Reset onTime after reaching full count
     }
 }
+void GPIO_Handler(void) {
