@@ -6,4 +6,5 @@ volatile uint32_t count = 160;      // Count value for 100 kHz PWM with 16 MHz c
   // Function declarations
 void GPIO_Handler(void);
 void Systick_Handler(void);
+int main(void) {
 
