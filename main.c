@@ -57,3 +57,17 @@ static uint32_t onTime = 0;
     }
 }
 void GPIO_Handler(void) {
+ if (GPIO_PORTF_RIS_R & 0x10) { // Check for PF4
+        if (dutyCycle < 100) {
+            dutyCycle += 5;  // Increase duty cycle by 5%
+        }
+        GPIO_PORTF_ICR_R |= 0x10;   // Clear the interrupt
+    }
+
+    if (GPIO_PORTF_RIS_R & 0x01) { // Check for PF0
+        if (dutyCycle > 0) {
+            dutyCycle -= 5;  // Decrease duty cycle by 5%
+        }
+        GPIO_PORTF_ICR_R |= 0x01;   // Clear the interrupt
+    }
+}
