@@ -43,3 +43,16 @@ static uint32_t onTime = 0;
     }
 }
 void Systick_Handler(void) {
+static uint32_t onTime = 0;
+
+    if (onTime < (dutyCycle * count) / 100) {
+        GPIO_PORTF_DATA_R |= 0x02; // Turn on red LED
+    } else {
+        GPIO_PORTF_DATA_R &= ~0x02; // Turn off red LED
+    }
+
+    onTime++;
+    if (onTime >= count) {
+        onTime = 0;  // Reset onTime after reaching full count
+    }
+}
